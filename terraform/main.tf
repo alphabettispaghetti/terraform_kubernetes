@@ -1,11 +1,11 @@
 module "gke-cluster" {
-  source = "google-terraform-modules/kubernetes-engine/google"
+  source = "node_pools"
   version = "1.19.1"
 
   general = {
-    name = "mycluster"
-    env  = "prod"
-    zone = "europe-west1-b"
+    name = "jumperbox"
+    env  = "dev"
+    zone = "europe-west2-b"
   }
 
   master = {
@@ -21,17 +21,16 @@ module "gke-cluster" {
   # Optional in case we have a default pool
   node_pool = [
     {
-      machine_type   = "g1-small"
-      disk_size_gb   = 20
-      node_count     = 3
-      min_node_count = 2
-      max_node_count = 4
-    },
-    {
-      disk_size_gb   = 30
-      node_count     = 2
+      machine_type   = "custom-2-4096"
+      disk_size_gb   = 40
       min_node_count = 1
       max_node_count = 3
+    },
+    {
+      machine_type   = "custom-1-2048"
+      disk_size_gb   = 40
+      min_node_count = 1
+      max_node_count = 5
     },
   ]
 }
