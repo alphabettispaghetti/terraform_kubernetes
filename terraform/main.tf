@@ -22,15 +22,16 @@ module "gke-cluster" {
   node_pool = [
     {
       machine_type   = "custom-2-4096"
-      disk_size_gb   = 40
+      disk_size_gb   = 30
       min_node_count = 1
       max_node_count = 3
     },
     {
       machine_type   = "custom-1-2048"
-      disk_size_gb   = 40
+      disk_size_gb   = 30
       min_node_count = 1
       max_node_count = 5
     },
   ]
+  
 }

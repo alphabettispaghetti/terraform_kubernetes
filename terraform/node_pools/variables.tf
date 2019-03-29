@@ -47,27 +47,28 @@ variable "master" {
 # preemptible (default: false)
 # service_account (default: default)
 variable "default_node_pool" {
-  type        = "map"
-  default     = {}
-  description = "Default pool setting"
+  type                 = "map"
+  default              = {}
+  description          = "Default pool setting"
 }
 
 # Parameters authorized:
 # node_count (default: 3)
-# machine_type (default: n1-standard-1)
-# disk_size_gb (default: 10)
-# preemptible (default: false)
-# local_ssd_count (default: 0)
-# oauth_scopes (default: https://www.googleapis.com/auth/compute,https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring)
-# min_node_count (default: 1)
-# max_node_count (default: 3)
-# auto_repair (default: true)
-# auto_upgrade (default: true)
 # metadata (default: {})
 variable "node_pool" {
-  type        = "list"
-  default     = []
-  description = "Node pool setting to create"
+  type              = "list"
+  default           = []
+  description       = "Node pool setting to create"
+  auto_repair       = true
+  auto_upgrade      = true
+  min_node_count    = 1
+  max_node_count    = 3
+  oauth_scopes      = "https://www.googleapis.com/auth/compute,https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring"
+  machine_type      = "custom-2-4096"
+  disk_size_gb      = 35
+  preemptible       = false
+  local_ssd_count   = 0
+  service_account   = "default"
 }
 
 # https://www.terraform.io/docs/providers/google/r/container_cluster.html#tags
